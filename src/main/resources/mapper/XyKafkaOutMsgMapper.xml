@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xy.kafka.dao.XyKafkaOutMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.xy.kafka.bean.XyKafkaOutMsg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="fw_bh" property="fwBh" jdbcType="BIGINT" />
+    <result column="deal_flag" property="dealFlag" jdbcType="TINYINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fw_bh, deal_flag, gmt_create, gmt_update
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from xy_kafka_out_msg
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xy_kafka_out_msg
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xy.kafka.bean.XyKafkaOutMsg" useGeneratedKeys="true" keyProperty="id" >
+    insert into xy_kafka_out_msg (fw_bh, deal_flag, gmt_create, 
+      gmt_update)
+    values (#{fwBh,jdbcType=BIGINT}, #{dealFlag,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xy.kafka.bean.XyKafkaOutMsg" useGeneratedKeys="true" keyProperty="id" >
+    insert into xy_kafka_out_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fwBh != null" >
+        fw_bh,
+      </if>
+      <if test="dealFlag != null" >
+        deal_flag,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fwBh != null" >
+        #{fwBh,jdbcType=BIGINT},
+      </if>
+      <if test="dealFlag != null" >
+        #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xy.kafka.bean.XyKafkaOutMsg" >
+    update xy_kafka_out_msg
+    <set >
+      <if test="fwBh != null" >
+        fw_bh = #{fwBh,jdbcType=BIGINT},
+      </if>
+      <if test="dealFlag != null" >
+        deal_flag = #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xy.kafka.bean.XyKafkaOutMsg" >
+    update xy_kafka_out_msg
+    set fw_bh = #{fwBh,jdbcType=BIGINT},
+      deal_flag = #{dealFlag,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByFwBh" parameterType="com.xy.kafka.bean.XyKafkaOutMsg">
+     update xy_kafka_out_msg
+    set
+      deal_flag = #{outMsg.dealFlag,jdbcType=TINYINT}
+    where fw_bh = #{outMsg.fwBh,jdbcType=BIGINT}
+  </update>
+</mapper>
