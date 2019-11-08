@@ -3,9 +3,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver      # 配置MySQL的驱动程序类
-    url: jdbc:mysql://192.168.1.200:3306/kafka?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8          # 数据库连接地址
-    username: kafka                                  # 数据库用户名
-    password: 123456                            # 数据库连接密码
+    url: jdbc:mysql://127.0.0.1:3306/springboot-demo?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8          # 数据库连接地址
+    username: root                                  # 数据库用户名
+    password: root                            # 数据库连接密码
     dbcp2:                                          # 进行数据库连接池的配置
       min-idle: 5                                   # 数据库连接池的最小维持连接数
       initial-size: 5                               # 初始化提供的连接数
@@ -13,7 +13,7 @@ spring:
       max-wait-millis: 200                          # 等待连接获取的最大超时时间
   kafka:
     # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
-    bootstrap-servers: 192.168.1.200:9092
+    bootstrap-servers: 127.0.0.1:9092
     producer:
       # 发生错误后，消息重发的次数。
       retries: 0
@@ -56,4 +56,4 @@ mybatis:
 
 logging:
   level:
-    com.xy.kafka : debug
+    com.xy.kafka : info

@@ -1,5 +1,6 @@
 # springboot-kafka
 记录一次springboot集成kafka的过程
+* 新版本springboot+kafka请参考[springboot+kafka新版本](https://github.com/TianPuJun/springboot-demo)
 ## 创建数据库表
 # sql 生产消息一致表
 
